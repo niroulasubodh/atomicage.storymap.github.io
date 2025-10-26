@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voices from the Atomic Age - Story Map</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 20%, #E0F6FF 40%, #FFE5B4 60%, #FFDAB9 80%, #E6D5B8 100%);
+            background-attachment: fixed;
+            color: #2c3e50;
+            overflow-x: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 80px 20px 50px;
+            background: linear-gradient(180deg, rgba(44, 62, 80, 0.9) 0%, rgba(44, 62, 80, 0.5) 100%);
+            border-bottom: 4px solid #e74c3c;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(231, 76, 60, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(52, 152, 219, 0.2) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            background: linear-gradient(90deg, #e74c3c, #c0392b, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            color: #2c3e50;
+            font-weight: 600;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+
+        .inspired-by {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(90deg, rgba(231, 76, 60, 0.2), rgba(52, 152, 219, 0.2), rgba(46, 204, 113, 0.2));
+            border-top: 2px solid rgba(231, 76, 60, 0.5);
+            border-bottom: 2px solid rgba(231, 76, 60, 0.5);
+            margin-bottom: 50px;
+            backdrop-filter: blur(5px);
+        }
+
+        .inspired-by p {
+            font-size: 1.05em;
+            color: #c0392b;
+            font-weight: 600;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .inspired-by p:last-child {
+            font-size: 0.95em;
+            color: #e67e22;
+            margin-bottom: 0;
+        }
+
+        .timeline-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: linear-gradient(180deg, 
+                #e74c3c 0%, 
+                #3498db 25%, 
+                #2ecc71 50%, 
+                #f39c12 75%, 
+                #e74c3c 100%);
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(231, 76, 60, 0.4);
+        }
+
+        .story-card {
+            position: relative;
+            margin: 80px 0;
+            opacity: 0;
+            animation: fadeInUp 1s ease-in forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .story-card:nth-child(1) { animation-delay: 0.3s; }
+        .story-card:nth-child(2) { animation-delay: 0.6s; }
+        .story-card:nth-child(3) { animation-delay: 0.9s; }
+        .story-card:nth-child(4) { animation-delay: 1.2s; }
+
+        .story-card.left .card-content {
+            margin-right: 52%;
+        }
+
+        .story-card.right .card-content {
+            margin-left: 52%;
+        }
+
+        .card-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.75) 100%);
+            padding: 0;
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+            border: 3px solid rgba(231, 76, 60, 0.5);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .card-content:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(231, 76, 60, 0.3);
+            border-color: #e74c3c;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            object-position: center;
+            background-color: #f8f9fa;
+            border-radius: 18px 18px 0 0;
+            border-bottom: 3px solid rgba(231, 76, 60, 0.6);
+            padding: 10px;
+        }
+
+        .card-text-content {
+            padding: 30px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 150px;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border: 5px solid #ffffff;
+            border-radius: 50%;
+            z-index: 10;
+            box-shadow: 0 0 30px rgba(231, 76, 60, 0.6);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(231, 76, 60, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(231, 76, 60, 0.9); }
+        }
+
+        .location-tag {
+            display: inline-block;
+            background: linear-gradient(90deg, rgba(52, 152, 219, 0.3), rgba(41, 128, 185, 0.3));
+            color: #2c3e50;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border: 2px solid rgba(52, 152, 219, 0.6);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .card-content h2 {
+            color: #c0392b;
+            font-size: 2em;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .card-content h3 {
+            color: #e67e22;
+            font-size: 1.15em;
+            margin-bottom: 20px;
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        .story-text {
+            line-height: 1.9;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.05em;
+            text-shadow: none;
+        }
+
+        .atomic-cafe-reference {
+            background: linear-gradient(90deg, rgba(52, 152, 219, 0.15), rgba(41, 128, 185, 0.15));
+            border-left: 4px solid #3498db;
+            padding: 18px;
+            margin-top: 20px;
+            font-style: italic;
+            color: #2c3e50;
+            font-size: 0.95em;
+            border-radius: 0 10px 10px 0;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        .impact-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .impact-tag {
+            background: linear-gradient(90deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3));
+            color: #c0392b;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            border: 2px solid rgba(231, 76, 60, 0.6);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.2);
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 70px 20px;
+            background: linear-gradient(180deg, rgba(44, 62, 80, 0.7) 0%, rgba(44, 62, 80, 0.9) 100%);
+            margin-top: 80px;
+            border-top: 4px solid #e74c3c;
+        }
+
+        .gallery-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 50px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 248, 255, 0.9));
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .gallery-section h2 {
+            color: #c0392b;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .gallery-subtitle {
+            color: #2c3e50;
+            font-size: 1.1em;
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+
+        .gallery-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            background: #ffffff;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .gallery-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: contain;
+            background-color: #f8f9fa;
+        }
+
+        .gallery-caption {
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 20px 20px;
+            color: white;
+        }
+
+        .gallery-caption h4 {
+            font-size: 1.5em;
+            margin-bottom: 8px;
+            color: #e74c3c;
+        }
+
+        .gallery-caption p {
+            font-size: 1em;
+            color: #ecf0f1;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(231, 76, 60, 0.8);
+            color: white;
+            border: none;
+            font-size: 2em;
+            padding: 15px 20px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-nav:hover {
+            background: rgba(192, 57, 43, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .gallery-nav.prev {
+            left: 10px;
+        }
+
+        .gallery-nav.next {
+            right: 10px;
+        }
+
+        .gallery-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(231, 76, 60, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #e74c3c;
+        }
+
+        .dot.active {
+            background: #e74c3c;
+            transform: scale(1.3);
+        }
+
+        .dot:hover {
+            background: #c0392b;
+        }
+
+        .footer h3 {
+            color: #e74c3c;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .footer p {
+            color: #ecf0f1;
+            max-width: 800px;
+            margin: 0 auto 25px;
+            line-height: 2;
+            font-size: 1.1em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 968px) {
+            .timeline-line { display: none; }
+            .timeline-marker { display: none; }
+            
+            .story-card.left .card-content,
+            .story-card.right .card-content {
+                margin: 0;
+            }
+
+            .header h1 { font-size: 2.2em; }
+            .card-content h2 { font-size: 1.5em; }
+            .card-image { height: 200px; }
+            
+            .gallery-slide img { height: 350px; }
+            .gallery-nav { font-size: 1.5em; padding: 10px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌏 Voices from the Atomic Age 💣</h1>
+        <p>A Story Map of Lives Transformed by World War II and Nuclear Terror</p>
+    </div>
+
+    <div class="inspired-by">
+        <p>Inspired by "The Atomic Cafe" (1982) - A documentary revealing the human cost behind Cold War propaganda</p>
+        <p>⚠ Note: The individual stories below are fictionalized narratives based on real historical events and documented patterns of experience.</p>
+    </div>
+
+    <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <div class="story-card left">
+            <div class="timeline-marker"></div>
+            <div class="card-content">
+                <img src="images/hiroshima-aftermath.jpg" alt="Hiroshima aftermath" class="card-image">
+                <div class="card-text-content">
+                    <span class="location-tag">📍 Hiroshima, Japan</span>
+                    <h2>Suzuki Akari</h2>
+                    <h3>Atomic Bomb Survivor, Age 12 in 1945</h3>
+                    <div class="story-text">
+                        <p>Suzuki was walking to school on August 6, 1945, when the atomic bomb exploded. She survived with severe burns and scars. People treated her badly because they feared radiation. She had nightmares for years and struggled to live a normal life.</p>
+                    </div>
+                    <div class="atomic-cafe-reference">
+                        "The Atomic Cafe" shows happy government films about nuclear power, but hides the real suffering of survivors like Suzuki.
+                    </div>
+                    <div class="impact-tags">
+                        <span class="impact-tag">Radiation Sickness</span>
+                        <span class="impact-tag">Social Stigma</span>
+                        <span class="impact-tag">Lifelong Trauma</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="story-card right">
+            <div class="timeline-marker"></div>
+            <div class="card-content">
+                <img src="images/castle-bravo-test.jpg" alt="Castle Bravo nuclear test" class="card-image">
+                <div class="card-text-content">
+                    <span class="location-tag">📍 Marshall Islands, Pacific Ocean</span>
+                    <h2>Alson Kabua</h2>
+                    <h3>Island Resident Affected by Nuclear Testing</h3>
+                    <div class="story-text">
+                        <p>The U.S. tested 67 nuclear bombs in the Marshall Islands. Alson was seven years old in 1954 when radioactive fallout fell like snow. Children played in it without knowing it was deadly. He got sick immediately. His skin blistered and hair fell out. Many people got cancer. His island home became poisoned and his family had to leave forever.</p>
+                    </div>
+                    <div class="atomic-cafe-reference">
+                        "The Atomic Cafe" shows how the U.S. government told people nuclear bombs were safe. Pacific Islanders like Alson paid the real price.
+                    </div>
+                    <div class="impact-tags">
+                        <span class="impact-tag">Environmental Destruction</span>
+                        <span class="impact-tag">Forced Relocation</span>
+                        <span class="impact-tag">Generational Cancer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="story-card left">
+            <div class="timeline-marker"></div>
+            <div class="card-content">
+                <img src="images/nevada-test-site.jpg" alt="Nevada Test Site mushroom cloud" class="card-image">
+                <div class="card-text-content">
+                    <span class="location-tag">📍 Nevada Test Site, USA</span>
+                    <h2>Jane Watson</h2>
+                    <h3>"Downwinder" Lived near nuclear test sites</h3>
+                    <div class="story-text">
+                        <p>Jane grew up in Salt Lake City in the 1950s when nuclear tests were common. The government said the tests were safe and even encouraged families to watch the mushroom clouds. She remembers having picnics to view the explosions. By age 24, she had thyroid cancer. Her mother died of cancer. Many of her neighbors died of cancer too. The government had lied to them.</p>
+                    </div>
+                    <div class="atomic-cafe-reference">
+                        "The Atomic Cafe" shows propaganda films telling Americans that nuclear weapons kept them safe. Jane's story shows the truth: many Americans got sick from their own government's bombs.
+                    </div>
+                    <div class="impact-tags">
+                        <span class="impact-tag">Government Betrayal</span>
+                        <span class="impact-tag">Cancer Clusters</span>
+                        <span class="impact-tag">Lost Trust</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="story-card right">
+            <div class="timeline-marker"></div>
+            <div class="card-content">
+                <img src="images/nagasaki-destruction.jpg" alt="Nagasaki destruction" class="card-image">
+                <div class="card-text-content">
+                    <span class="location-tag">📍 Nagasaki, Japan</span>
+                    <h2>Kenji Watanabe</h2>
+                    <h3>Postal Worker and Bomb Survivor</h3>
+                    <div class="story-text">
+                        <p>Kenji was delivering mail on August 9, 1945, when the atomic bomb exploded over Nagasaki. The heat burned away the flesh on his back and arms. He spent almost two years in the hospital. He survived but lived with constant pain. Later, he became an activist and showed photos of his injuries to world leaders at the United Nations to warn them about nuclear weapons.</p>
+                    </div>
+                    <div class="atomic-cafe-reference">
+                        "The Atomic Cafe" shows cheerful atomic propaganda. Kenji showed the world the real images, the true horror of nuclear war that governments tried to hide.
+                    </div>
+                    <div class="impact-tags">
+                        <span class="impact-tag">Lifelong Pain</span>
+                        <span class="impact-tag">Activism Born from Trauma</span>
+                        <span class="impact-tag">Visual Testament</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-section">
+        <h2>📸 Historical Photo Gallery</h2>
+        <p class="gallery-subtitle">Swipe through these powerful images from the atomic age</p>
+        
+        <div class="gallery-container">
+            <button class="gallery-nav prev" onclick="moveGallery(-1)">❮</button>
+            
+            <div class="gallery-track">
+                <div class="gallery-slide">
+                    <img src="images/hiroshima-aftermath.jpg" alt="Hiroshima aftermath">
+                    <div class="gallery-caption">
+                        <h4>Hiroshima Aftermath</h4>
+                        <p>The devastated city after the atomic bomb, August 1945</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-slide">
+                    <img src="images/castle-bravo-test.jpg" alt="Castle Bravo nuclear test">
+                    <div class="gallery-caption">
+                        <h4>Castle Bravo Test</h4>
+                        <p>The largest U.S. nuclear test in the Marshall Islands, 1954</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-slide">
+                    <img src="images/nevada-test-site.jpg" alt="Nevada Test Site">
+                    <div class="gallery-caption">
+                        <h4>Nevada Test Site</h4>
+                        <p>Atmospheric nuclear test visible from Las Vegas, 1950s</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-slide">
+                    <img src="images/nagasaki-destruction.jpg" alt="Nagasaki destruction">
+                    <div class="gallery-caption">
+                        <h4>Nagasaki Destruction</h4>
+                        <p>Temple ruins after the plutonium bomb, August 9, 1945</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-slide">
+                    <img src="images/hiroshima-mushroom-cloud.jpg" alt="Hiroshima mushroom cloud">
+                    <div class="gallery-caption">
+                        <h4>Mushroom Cloud Over Hiroshima</h4>
+                        <p>The iconic image of atomic destruction, August 6, 1945</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-slide">
+                    <img src="images/enola-gay.jpg" alt="Enola Gay">
+                    <div class="gallery-caption">
+                        <h4>The Enola Gay</h4>
+                        <p>The B-29 bomber that dropped the Hiroshima atomic bomb</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="gallery-nav next" onclick="moveGallery(1)">❯</button>
+        </div>
+        
+        <div class="gallery-dots">
+            <span class="dot active" onclick="setGallery(0)"></span>
+            <span class="dot" onclick="setGallery(1)"></span>
+            <span class="dot" onclick="setGallery(2)"></span>
+            <span class="dot" onclick="setGallery(3)"></span>
+            <span class="dot" onclick="setGallery(4)"></span>
+            <span class="dot" onclick="setGallery(5)"></span>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h3>✨ The Legacy Continues ✨</h3>
+        <p>These four stories represent millions of people affected by nuclear weapons. "The Atomic Cafe" used real government footage to show how propaganda hid the truth about atomic bombs. This story map shows where these weapons hurt real people—from Japan to the Pacific Islands to America.</p>
+        <p>Nuclear weapons still exist today. Nine countries have them, and the danger remains. By remembering these stories, we can resist the lies that make nuclear war seem acceptable.</p>
+        <p style="margin-top: 35px; font-style: italic; color: #e74c3c; font-size: 1.15em;">
+            💭 "We must never forget that these weapons were not dropped on a military base—they were dropped on cities full of human beings like us."
+        </p>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+
+        function moveGallery(direction) {
+            const track = document.querySelector('.gallery-track');
+            const slides = document.querySelectorAll('.gallery-slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            currentSlide += direction;
+            
+            if (currentSlide < 0) {
+                currentSlide = slides.length - 1;
+            } else if (currentSlide >= slides.length) {
+                currentSlide = 0;
+            }
+            
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function setGallery(index) {
+            const track = document.querySelector('.gallery-track');
+            const dots = document.querySelectorAll('.dot');
+            
+            currentSlide = index;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        const galleryContainer = document.querySelector('.gallery-container');
+
+        galleryContainer.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        galleryContainer.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                moveGallery(1); // Swipe left
+            }
+            if (touchEndX > touchStartX + 50) {
+                moveGallery(-1); // Swipe right
+            }
+        }
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.story-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
